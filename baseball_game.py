@@ -64,7 +64,7 @@ def is_between_100_and_999(user_input_number: str) -> bool:
     return result
 
 
-def is_duplicated_number(three_digit:str) -> bool:
+def is_duplicated_number(three_digit: str) -> bool:
     # '''
     # Input:
     #   - three_digit : 문자열로 된 세자리 양의 정수 값
@@ -115,7 +115,11 @@ def is_validated_number(user_input_number: str) -> bool:
     # ===Modify codes below=============
     # 조건에 따라 변환되어야 할 결과를 result 변수에 할당
 
-    result = is_digit(user_input_number) and is_between_100_and_999(user_input_number) and not is_duplicated_number(user_input_number)
+    result = (
+        is_digit(user_input_number)
+        and is_between_100_and_999(user_input_number)
+        and not is_duplicated_number(user_input_number)
+    )
     # ==================================
     return result
 
@@ -253,8 +257,10 @@ def is_no(one_more_input: str) -> bool:
     # ==================================
     return result
 
+
 def alert_wrong_input():
     print("Wrong Input, Input again")
+
 
 def main():
     print("Play Baseball")
@@ -267,7 +273,7 @@ def main():
         while strike != 3:
 
             while True:
-                user_input = input('Input guess number : ')
+                user_input = input("Input guess number : ")
                 if is_validated_number(user_input):
                     user_input = str(int(user_input))
                     break
@@ -287,6 +293,7 @@ def main():
 
     print("Thank you for using this program")
     print("End of the Game")
+
 
 if __name__ == "__main__":
     main()
