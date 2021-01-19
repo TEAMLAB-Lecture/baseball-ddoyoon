@@ -270,26 +270,30 @@ def main():
         print("Random Number is : ", random_number)
         strike, ball = 0, 0
 
-        while strike != 3:
+        while not done and strike != 3:
 
             while True:
                 user_input = input("Input guess number : ")
+                if user_input == "0":
+                    done = True
+                    break
                 if is_validated_number(user_input):
                     user_input = str(int(user_input))
                     break
                 alert_wrong_input()
-            strike, ball = get_strikes_or_ball(user_input, random_number)
-            print(f"Strikes : {strike} , Balls : {ball}")
+            if not done:
+                strike, ball = get_strikes_or_ball(user_input, random_number)
+                print(f"Strikes : {strike} , Balls : {ball}")
 
-            if strike == 3:
-                while True:
-                    again = input("You win, one more(Y/N)?")
-                    if is_no(again):
-                        done = True
-                        break
-                    if is_yes(again):
-                        break
-                    alert_wrong_input()
+                if strike == 3:
+                    while True:
+                        again = input("You win, one more(Y/N)?")
+                        if is_no(again):
+                            done = True
+                            break
+                        if is_yes(again):
+                            break
+                        alert_wrong_input()
 
     print("Thank you for using this program")
     print("End of the Game")
