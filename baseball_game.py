@@ -59,7 +59,7 @@ def is_between_100_and_999(user_input_number: str) -> bool:
     # ===Modify codes below=============
     # 조건에 따라 변환되어야 할 결과를 result 변수에 할당
     str_to_int = int(user_input_number)
-    result = True if (str_to_int >= 100 and str_to_int < 1000) else False
+    result = True if 100 <= str_to_int < 1000 else False
     # ==================================
     return result
 
@@ -264,24 +264,25 @@ def alert_wrong_input():
 
 def main():
     print("Play Baseball")
-    done = False
-    while not done:
+    gameover = False
+
+    while not gameover:
         random_number = str(get_not_duplicated_three_digit_number())
         print("Random Number is : ", random_number)
         strike, ball = 0, 0
 
-        while not done and strike != 3:
-
+        while not gameover and strike != 3:
             while True:
                 user_input = input("Input guess number : ")
                 if user_input == "0":
-                    done = True
+                    gameover = True
                     break
                 if is_validated_number(user_input):
                     user_input = str(int(user_input))
                     break
                 alert_wrong_input()
-            if not done:
+
+            if not gameover:
                 strike, ball = get_strikes_or_ball(user_input, random_number)
                 print(f"Strikes : {strike} , Balls : {ball}")
 
@@ -289,7 +290,7 @@ def main():
                     while True:
                         again = input("You win, one more(Y/N)?")
                         if is_no(again):
-                            done = True
+                            gameover = True
                             break
                         if is_yes(again):
                             break
